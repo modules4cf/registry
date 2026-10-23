@@ -141,12 +141,14 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) before you open your first pull request.
 | [M3 web UI and community](https://github.com/modules4cf/registry/milestone/3) | Web UI, MCP server, moderation, security, modules4cf.org goes live |
 | [M4 federation and mirror](https://github.com/modules4cf/registry/milestone/4) | ForgeBox proxy/mirror, federation between registries |
 
+**Resilience.** Across all milestones, applications that use modules4cf modules must never depend on a single registry, including this one. Every release is also published as a GitHub release zip and Git tag. Docs show registry-independent install forms. Offline deploys are documented, and CI installs everything with forgebox.io unreachable. See the [resilience epic (#36)](https://github.com/modules4cf/registry/issues/36).
+
 ## ❓ Open questions
 
 * Which runtime do we build on? CFML on Lucee is the proposal.
 * Which database do we support first, and do we support a lightweight single-container mode?
 * Which parts of the ForgeBox API are actually needed beyond what CommandBox calls (see [the compatibility notes](docs/forgebox-api-compatibility.md))?
-* How exactly should endpoint-prefixed dependencies look in `box.json`? This needs to be verified against a running registry.
+* How exactly should endpoint-prefixed dependencies look in `box.json`? The CommandBox source writes `"<slug>": "<endpoint>:<slug>@^1.2.3"`. This still needs to be verified against a running registry ([#29](https://github.com/modules4cf/registry/issues/29)).
 * What are the rules for proxying or mirroring ForgeBox content, and what do the ForgeBox terms of use allow?
 * Who can claim a package name, and how are disputes resolved?
 
